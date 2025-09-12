@@ -1,0 +1,26 @@
+[project]
+name = "aeb-safety-decision-engine"
+version = "0.1.0"
+description = "AEB Safety-Critical Decision Engine Prototype for urban pedestrian/cyclist protection"
+authors = [ { name = "Your Name" } ]
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["AEB", "safety-critical", "autonomous", "braking", "simulation"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Intended Audience :: Developers"
+]
+dependencies = [
+    "numpy>=1.26.0",
+    "matplotlib>=3.8.0",
+    "pytest>=8.0.0"
+]
+
+[project.scripts]
+aeb-demo = "main:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

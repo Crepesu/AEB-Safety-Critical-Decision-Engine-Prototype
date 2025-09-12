@@ -1,0 +1,2 @@
+[console_scripts]
+aeb-demo = main:main
