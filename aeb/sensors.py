@@ -1,4 +1,8 @@
-"""Sensor system simulation with weather and failure modes."""
+
+"""
+Sensor system simulation with weather and failure modes.
+Simulates multi-sensor fusion, reliability degradation, and object detection.
+"""
 import random
 import numpy as np
 from typing import List
@@ -6,8 +10,12 @@ from .enums import WeatherCondition, ObjectType
 from .models import DetectedObject
 from .constants import SafetyConstants
 
+
 class SensorSystem:
-    """Simulates multi-sensor input (Camera, Radar, LiDAR) with failure modes"""
+    """
+    Simulates multi-sensor input (Camera, Radar, LiDAR) with failure modes.
+    Handles weather impact, sensor failures, and probabilistic detection.
+    """
 
     def __init__(self):
         self.camera_operational = True
@@ -16,11 +24,17 @@ class SensorSystem:
         self.weather_condition = WeatherCondition.CLEAR
 
     def set_weather_condition(self, weather: WeatherCondition):
-        """Req 7: Handle adverse weather conditions"""
+        """
+        Set the current weather condition for the sensor system.
+        Req 7: Handle adverse weather conditions.
+        """
         self.weather_condition = weather
 
     def simulate_sensor_failure(self, sensor_type: str):
-        """Req 10: Simulate sensor failure for testing"""
+        """
+        Simulate a sensor failure for testing fail-safe logic.
+        Req 10: Simulate sensor failure for testing.
+        """
         if sensor_type == "camera":
             self.camera_operational = False
         elif sensor_type == "radar":
@@ -29,7 +43,10 @@ class SensorSystem:
             self.lidar_operational = False
 
     def get_sensor_reliability(self) -> float:
-        """Calculate overall sensor system reliability"""
+        """
+        Calculate overall sensor system reliability.
+        Combines operational status and weather impact.
+        """
         operational_sensors = sum([
             self.camera_operational,
             self.radar_operational,
@@ -47,7 +64,10 @@ class SensorSystem:
         return (operational_sensors / 3.0) * weather_factor
 
     def detect_objects(self, scenario_objects: List[dict]) -> List[DetectedObject]:
-        """Simulate object detection with realistic sensor performance"""
+        """
+        Simulate object detection with realistic sensor performance.
+        Adds noise, probabilistic detection, and range filtering.
+        """
         detected_objects = []
         reliability = self.get_sensor_reliability()
 

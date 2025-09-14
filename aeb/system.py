@@ -1,4 +1,8 @@
-"""Integration of sensors, threat assessment, and decision engine."""
+
+"""
+Integration of sensors, threat assessment, and decision engine.
+Coordinates the main AEB system logic and performance metrics.
+"""
 from typing import List
 import numpy as np
 from .sensors import SensorSystem
@@ -7,10 +11,18 @@ from .decision import SafetyDecisionEngine
 from .constants import SafetyConstants
 from .models import DetectedObject
 
+
 class AEBSystem:
-    """Main AEB System integrating all components"""
+    """
+    Main AEB System integrating all components.
+    Orchestrates sensor input, threat assessment, decision making, and metrics.
+    """
 
     def __init__(self, vehicle_speed: float = 30.0):
+        """
+        Initialize the AEB system and all subcomponents.
+        vehicle_speed: initial speed in km/h (default 30).
+        """
         self.sensor_system = SensorSystem()
         self.threat_assessment = ThreatAssessment(vehicle_speed)
         self.decision_engine = SafetyDecisionEngine()
@@ -24,6 +36,11 @@ class AEBSystem:
         }
 
     def process_scenario(self, scenario_objects: List[dict]) -> dict:
+        """
+        Main processing loop for a single scenario.
+        Runs detection, threat assessment, decision, and updates metrics.
+        Returns a dict with all relevant outputs for analysis.
+        """
         detected_objects = self.sensor_system.detect_objects(scenario_objects)
         threat_detected, threat_object, min_ttc = self.threat_assessment.assess_collision_risk(detected_objects)
         sensor_reliability = self.sensor_system.get_sensor_reliability()
@@ -42,6 +59,11 @@ class AEBSystem:
         }
 
     def update_metrics(self, decision: dict, detected: List[DetectedObject], actual: List[dict]):
+        """
+        Update system performance metrics for requirement validation.
+        - Tracks total decisions, emergency events, response times, and detection accuracy.
+        - Accuracy only counts actual objects within detection range.
+        """
         self.performance_metrics['total_decisions'] += 1
         if decision['action'] == 'EMERGENCY_BRAKE':
             self.performance_metrics['emergency_braking_events'] += 1
@@ -53,6 +75,10 @@ class AEBSystem:
         self.performance_metrics['detection_accuracy'].append(accuracy)
 
     def get_performance_report(self) -> dict:
+        """
+        Generate a performance report for requirement validation.
+        Returns summary statistics and compliance flags.
+        """
         if not self.performance_metrics['response_times']:
             return {'error': 'No data collected yet'}
         avg_response_time = np.mean(self.performance_metrics['response_times'])

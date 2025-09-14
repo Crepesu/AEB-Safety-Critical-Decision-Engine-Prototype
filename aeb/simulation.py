@@ -1,16 +1,28 @@
-"""Simulation environment for testing AEB system requirements."""
+"""
+Simulation environment for testing AEB system requirements.
+Runs requirement validation scenarios and prints results.
+"""
 from .system import AEBSystem
 from .enums import WeatherCondition
 from .constants import SafetyConstants
 
 class AEBSimulation:
-    """Simulation environment for testing AEB system requirements"""
+    """
+    Simulation environment for testing AEB system requirements.
+    Provides scenario generators and requirement validation tests.
+    """
 
     def __init__(self):
+        """
+        Initialize the simulation and AEB system.
+        """
         self.aeb_system = AEBSystem()
         self.scenario_results = []
 
     def create_pedestrian_crossing_scenario(self):
+        """
+        Create a scenario with a pedestrian crossing in front of the vehicle.
+        """
         return [{
             'type': 'pedestrian',
             'position': [25.0, 1.5],
@@ -19,6 +31,9 @@ class AEBSimulation:
         }]
 
     def create_cyclist_scenario(self):
+        """
+        Create a scenario with a cyclist ahead of the vehicle.
+        """
         return [{
             'type': 'cyclist',
             'position': [30.0, 0.5],
@@ -27,6 +42,9 @@ class AEBSimulation:
         }]
 
     def create_false_positive_scenario(self):
+        """
+        Create a scenario that should not trigger emergency braking (false positive test).
+        """
         return [{
             'type': 'pedestrian',
             'position': [20.0, 4.0],
@@ -35,6 +53,10 @@ class AEBSimulation:
         }]
 
     def run_requirement_validation_tests(self):
+        """
+        Run a suite of requirement validation tests and print results.
+        Each test checks a specific safety requirement.
+        """
         print("=== AEB System Requirement Validation Tests ===\n")
         print("Testing Req 1: 50m Detection Range")
         far_scenario = [{

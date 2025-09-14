@@ -1,4 +1,8 @@
-"""System-wide safety constants tied to requirements."""
+
+"""
+System-wide safety constants tied to requirements.
+Each constant is referenced by requirement number for traceability.
+"""
 
 class SafetyConstants:
     MAX_DETECTION_RANGE = 50.0      # Req 1: 50m detection range

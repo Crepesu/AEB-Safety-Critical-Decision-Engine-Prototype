@@ -1,7 +1,13 @@
-"""Main entrypoint for AEB Safety-Critical System Prototype."""
+"""
+Main entrypoint for AEB Safety-Critical System Prototype.
+Runs the requirement validation demo and prints summary.
+"""
 from aeb.simulation import AEBSimulation
 
 def main():
+    """
+    Run the AEB requirement validation demo and print summary.
+    """
     print("AEB Safety-Critical System Prototype")
     print("=" * 50)
     print("Demonstrating requirement validation for urban collision avoidance\n")

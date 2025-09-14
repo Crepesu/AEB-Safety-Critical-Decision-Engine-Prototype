@@ -1,4 +1,8 @@
-"""Enumerations for object types, weather, and system states."""
+
+"""
+Enumerations for object types, weather, and system states.
+Used throughout the AEB system for type safety and clarity.
+"""
 from enum import Enum
 
 class ObjectType(Enum):

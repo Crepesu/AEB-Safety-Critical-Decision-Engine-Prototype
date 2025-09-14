@@ -1,4 +1,8 @@
-"""Data models for detected objects."""
+
+"""
+Data models for detected objects.
+Defines the DetectedObject dataclass used by sensors and threat assessment.
+"""
 from dataclasses import dataclass
 from typing import Tuple
 from .enums import ObjectType

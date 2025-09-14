@@ -5,6 +5,9 @@ from aeb.enums import WeatherCondition
 
 
 def test_detection_range_exclusion():
+    """
+    Test that objects beyond the maximum detection range are not detected.
+    """
     system = AEBSystem()
     far_obj = [{
         'type': 'pedestrian',
@@ -17,6 +20,9 @@ def test_detection_range_exclusion():
 
 
 def test_ttc_emergency_brake_trigger():
+    """
+    Test that emergency braking is triggered when TTC is below threshold.
+    """
     system = AEBSystem()
     close_obj = [{
         'type': 'pedestrian',
@@ -33,6 +39,9 @@ def test_ttc_emergency_brake_trigger():
 
 
 def test_weather_reliability_light_rain():
+    """
+    Test that sensor reliability in light rain meets the required threshold.
+    """
     system = AEBSystem()
     system.sensor_system.set_weather_condition(WeatherCondition.LIGHT_RAIN)
     scenario = [{
@@ -46,6 +55,9 @@ def test_weather_reliability_light_rain():
 
 
 def test_warning_then_brake_transition():
+    """
+    Test that a warning is issued before emergency braking as TTC decreases.
+    """
     system = AEBSystem()
     # Object far enough to trigger warning first (TTC just above braking threshold but within warning window)
     scenario_warning = [{
@@ -69,6 +81,9 @@ def test_warning_then_brake_transition():
 
 
 def test_detection_accuracy_high_clear_conditions():
+    """
+    Test that detection accuracy in clear conditions meets the required threshold.
+    """
     system = AEBSystem()
     # Multiple identical scenarios to average out randomness
     scenario = [{
