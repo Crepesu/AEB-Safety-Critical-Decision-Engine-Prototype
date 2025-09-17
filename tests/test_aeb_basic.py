@@ -1,7 +1,7 @@
 import math
-from aeb.system import AEBSystem
-from aeb.constants import SafetyConstants
-from aeb.enums import WeatherCondition
+from aeb.core.system import AEBSystem
+from aeb.core.constants import SafetyConstants
+from aeb.core.enums import WeatherCondition
 
 
 def test_detection_range_exclusion():

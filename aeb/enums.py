@@ -1,26 +1,13 @@
 
+"""Legacy shim: enums moved to ``aeb.core.enums`` (deprecated path).
+
+Migrate to::
+
+	from aeb.core.enums import WeatherCondition
+
+Scheduled for removal in 0.4.0; migrate imports now.
 """
-Enumerations for object types, weather, and system states.
-Used throughout the AEB system for type safety and clarity.
-"""
-from enum import Enum
+from .core import enums as _core_enums
+from ._shim import publish_shim as _publish_shim
 
-class ObjectType(Enum):
-    PEDESTRIAN = "pedestrian"
-    CYCLIST = "cyclist"
-    VEHICLE = "vehicle"
-    STATIC_OBSTACLE = "static"
-    UNKNOWN = "unknown"
-
-class WeatherCondition(Enum):
-    CLEAR = "clear"
-    LIGHT_RAIN = "light_rain"
-    FOG = "fog"
-    NIGHT = "night"
-
-class SystemState(Enum):
-    OPERATIONAL = "operational"
-    WARNING = "warning"
-    EMERGENCY_BRAKING = "emergency_braking"
-    SENSOR_FAILURE = "sensor_failure"
-    FAIL_SAFE = "fail_safe"
+_publish_shim(globals(), _core_enums, "aeb.enums", "aeb.core.enums")

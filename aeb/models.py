@@ -1,19 +1,13 @@
 
-"""
-Data models for detected objects.
-Defines the DetectedObject dataclass used by sensors and threat assessment.
-"""
-from dataclasses import dataclass
-from typing import Tuple
-from .enums import ObjectType
+"""Legacy shim: models moved to ``aeb.core.models`` (deprecated path).
 
-@dataclass
-class DetectedObject:
-    """Represents an object detected by the AEB sensor system"""
-    id: int
-    type: ObjectType
-    position: Tuple[float, float]  # (x, y) coordinates
-    velocity: Tuple[float, float]  # (vx, vy) velocity
-    confidence: float  # Detection confidence (0.0 - 1.0)
-    distance: float
-    size: Tuple[float, float]  # (width, height)
+Migrate to::
+
+	from aeb.core.models import DetectedObject
+
+Scheduled for removal in 0.4.0; please migrate.
+"""
+from .core import models as _core_models
+from ._shim import publish_shim as _publish_shim
+
+_publish_shim(globals(), _core_models, "aeb.models", "aeb.core.models")

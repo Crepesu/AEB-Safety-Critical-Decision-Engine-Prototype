@@ -1,6 +1,6 @@
 [project]
 name = "aeb-safety-decision-engine"
-version = "0.1.0"
+version = "0.1.4"
 description = "AEB Safety-Critical Decision Engine Prototype for urban pedestrian/cyclist protection"
 authors = [ { name = "Your Name" } ]
 readme = "README.md"
